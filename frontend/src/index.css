@@ -9,3 +9,8 @@
 .wrapper{
     background-color: rgba(0, 0, 0, 0.461);
 }
+.wrapper-dark-blur{
+    background-color: rgba(0, 0, 0, 0.866);
+    backdrop-filter: blur(20px);
+
+}
