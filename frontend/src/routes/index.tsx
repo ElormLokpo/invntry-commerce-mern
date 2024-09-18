@@ -10,7 +10,7 @@ const admin_routes: RouteObject[] = [
         element: <AuthPage />
     },
     {
-    path: "admFin/auth",
+    path: "admin/auth",
     element: <AuthPage />
     },
     {

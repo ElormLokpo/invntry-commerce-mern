@@ -6,8 +6,19 @@ import { MdOutlineSpaceDashboard, MdOutlineProductionQuantityLimits } from "reac
 import { TbDeviceImacDollar } from "react-icons/tb";
 import { CiSettings } from "react-icons/ci";
 
-const SideNavItem = ({content, icon}:IProps) => {
-    return <NavLink to="/" className="text-sm flex mb-2 hover:bg-lime-800 py-2 px-2 rounded items-center gap-2"> {icon} {content}</NavLink>
+const SideNavItem = ({content, icon, to}:IProps) => {
+    let default_style = "text-sm flex mb-2 hover:bg-lime-900 hover:px-3 transition-all py-2 px-2 rounded items-center gap-2"
+    let active_style = "text-sm flex mb-2 bg-lime-800 py-2 px-2 rounded items-center gap-2"
+  
+    
+    return <NavLink to={to as string} className={({isActive})=>{
+        if(isActive){
+            console.log("Nav is active")
+            return active_style
+        }
+        return default_style
+
+    }}> {icon} {content}</NavLink>
 }
 
 export const SideNav = () => {
@@ -23,10 +34,10 @@ export const SideNav = () => {
                     </div>
 
                     <div>
-                        <SideNavItem icon={<MdOutlineSpaceDashboard />} content="Home" />
-                        <SideNavItem icon={<MdOutlineProductionQuantityLimits />} content="Products" />
-                        <SideNavItem icon={<TbDeviceImacDollar />} content="Orders" />
-                        <SideNavItem icon={<CiSettings />} content="Settings" />
+                        <SideNavItem icon={<MdOutlineSpaceDashboard />} content="Home" to="/admin/dashboard"/>
+                        <SideNavItem icon={<MdOutlineProductionQuantityLimits />} content="Products" to="/admin/auth" />
+                        <SideNavItem icon={<TbDeviceImacDollar />} content="Orders" to="/admin/auth"/>
+                        <SideNavItem icon={<CiSettings />} content="Settings" to="/admin/auth"/>
 
                     </div>
                 </div>

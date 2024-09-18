@@ -27,7 +27,7 @@ export const AuthPage = () => {
 
                 </div>
             </div>
-            <div className="bg-red-400 col-span-2" style={{ backgroundImage: `url(${image_address})`, backgroundSize: "cover" }}>
+            <div className="col-span-2" style={{ backgroundImage: `url(${image_address})`, backgroundSize: "cover" }}>
                 <div className="wrapper h-full flex items-end">
                     <div className="text-white px-5 py-20">
                         <p className="">Admin</p>
