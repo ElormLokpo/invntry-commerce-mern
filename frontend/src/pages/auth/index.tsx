@@ -8,20 +8,20 @@ export const AuthPage = () => {
         <div className="h-full grid grid-cols-3">
             <div className="flex items-center  col-span-1">
                 <div className="p-10 w-full flex justify-center">
-                    <div className="w-[20rem]">
+                    <div className="w-[19rem]">
                         <p className="font-bold text-xl w-[15rem] mb-3">Log In</p>
 
                         <div className="mb-2">
-                            <Input label="Username" />
+                            <Input label="Username" style_type="auth_style"/>
                         </div>
                         <div className="mb-2">
-                            <Input label="Password" type="password"/>
+                            <Input label="Password" type="password" style_type="auth_style"/>
                         </div>
 
                         <p className="underline text-xs mb-4">Forgot password?</p>
 
                         <div>
-                            <Button content="Log In"/>
+                            <Button content="Log In" style_type="auth"/>
                         </div>
                     </div>
 

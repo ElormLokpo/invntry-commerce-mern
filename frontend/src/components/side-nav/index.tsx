@@ -12,11 +12,12 @@ const SideNavItem = ({content, icon, to}:IProps) => {
   
     
     return <NavLink to={to as string} className={({isActive})=>{
-        if(isActive){
-            console.log("Nav is active")
+        if(isActive == true){   
             return active_style
+        }else{
+            return default_style
         }
-        return default_style
+       
 
     }}> {icon} {content}</NavLink>
 }
@@ -35,7 +36,7 @@ export const SideNav = () => {
 
                     <div>
                         <SideNavItem icon={<MdOutlineSpaceDashboard />} content="Home" to="/admin/dashboard"/>
-                        <SideNavItem icon={<MdOutlineProductionQuantityLimits />} content="Products" to="/admin/auth" />
+                        <SideNavItem icon={<MdOutlineProductionQuantityLimits />} content="Products" to="/admin/dashboard/products" />
                         <SideNavItem icon={<TbDeviceImacDollar />} content="Orders" to="/admin/auth"/>
                         <SideNavItem icon={<CiSettings />} content="Settings" to="/admin/auth"/>
 
