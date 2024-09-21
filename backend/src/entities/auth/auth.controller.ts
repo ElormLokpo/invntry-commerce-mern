@@ -24,6 +24,7 @@ export class AuthController implements IController {
         if (!username || !password) {
             let response = GenerateResponse(false, "Password and Username fields required", {})
             res.status(200).json(response);
+            next()
         }
 
         const user_exists = await AuthModel.findOne({ username });
@@ -31,12 +32,14 @@ export class AuthController implements IController {
         if (user_exists) {
             let response = GenerateResponse(false, "User already exists", {})
             res.status(200).json(response);
+            next()
         }
 
         const user_mutation = await AuthModel.create({ username, password });
 
         let response = GenerateResponse(true, "User created successfully", { username: user_mutation.username })
         res.status(200).json(response);
+        next()
     }
 
     private async LoginUser(req: Request, res: Response, next: NextFunction) {
@@ -44,6 +47,7 @@ export class AuthController implements IController {
         if (!username || !password) {
             let response = GenerateResponse(false, "Password and Username fields required", {})
             res.status(200).json(response);
+            next()
         }
 
         const user_exists = await AuthModel.findOne({ username }).select("+password");
@@ -51,6 +55,7 @@ export class AuthController implements IController {
         if (!user_exists) {
             let response = GenerateResponse(false, "User does not exist", {})
             res.status(200).json(response);
+            next()
         }
 
         if(user_exists){
@@ -59,15 +64,18 @@ export class AuthController implements IController {
             if (!user_password_valid) {
                 let response = GenerateResponse(false, "Incorrect Password", { })
                 res.status(200).json(response);
+                next()
             }
     
             let token = GenerateToken({username: user_exists.username})
             let response = GenerateResponse(true, "User Login Sucessfull", { token, username: user_exists.username, id:user_exists._id })
             res.status(200).json(response);
+            next()
         }
 
         let response = GenerateResponse(false, "Something went wrong", {})
         res.status(200).json(response);
+        next()
 
        
     }
