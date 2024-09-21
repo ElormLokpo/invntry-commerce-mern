@@ -15,7 +15,6 @@ export const Input = ({ label, type, style_type, placeholder, name, onChangeHand
         input_style = error_style_def
     }
 
-
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         onChangeHandler({ key: e.target.name, value: e.target.value })
     }
