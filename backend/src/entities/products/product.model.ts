@@ -1,8 +1,11 @@
 import {model, Schema} from "mongoose";
 import { ProductCategoryEnum, ProductStockStatus } from "./product.types";
-
+import {v4 as guid} from "uuid"
 
 const ProductSchema = new Schema({
+    _id:{
+        type:String
+    },
     product_name:{
         type:String, 
         required:true
@@ -13,7 +16,10 @@ const ProductSchema = new Schema({
     },
     quantity_sold:{
         type:Number, 
-        required:true
+    },
+    currency:{
+        type:String, 
+
     },
     unit_price:{
         type:Number, 
@@ -27,7 +33,7 @@ const ProductSchema = new Schema({
         type:Number, 
     },
     category:{
-        type:String, 
+        type:[String], 
         enum: Object.values(ProductCategoryEnum)
     },
     weight:{
@@ -46,6 +52,10 @@ const ProductSchema = new Schema({
         type:Number, 
         
     }
+})
+
+ProductSchema.pre("save",async function(){
+    this._id = guid();
 })
 
 export const ProductModel = model("ProductModel", ProductSchema);
