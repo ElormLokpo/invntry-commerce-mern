@@ -12,8 +12,10 @@ import { authValidationSchema } from "./validation";
 export const AuthPage = () => {
     const [authData, setAuthData] = useState<IAuthRequest>();
     const [loginUser, { isLoading }] = useLoginUserMutation()
+    const [inputErrorMessage, setInputErrorMessage] = useState<string>()
+    const [isInputError, setIsInputError] = useState<boolean>(false);
     const navigate = useNavigate();
-   
+
 
     const handleInputChange = ({ key, value }: any) => {
         setAuthData((prev: any) => ({
@@ -25,17 +27,26 @@ export const AuthPage = () => {
     const authButtonHandler = async () => {
 
         let validationResult = authValidationSchema.safeParse(authData)
+        if (!validationResult.success) {
 
-        // let { data } = await loginUser(authData as IAuthRequest)
+            if (validationResult.error.errors.length > 0) {
+                setIsInputError(true);
+                setInputErrorMessage(validationResult.error.errors[0].message)
+            }
+        } else {
+            let { data } = await loginUser(authData as IAuthRequest)
 
-        // console.log(data);
-        // if (data?.success==true){
-        //     navigate("/admin/dashboard")
-        // }
+            if (data?.success == true) {
+                navigate("/admin/dashboard")
+            }
 
-        // if (data?.success == false) {
-        //     toast.error(data.message)
-        // }
+            if (data?.success == false) {
+                toast.error(data.message)
+                
+            }
+
+        }
+
 
     }
 
@@ -50,11 +61,13 @@ export const AuthPage = () => {
                             <p className="font-bold text-xl w-[15rem] mb-3">Log In</p>
 
                             <div className="mb-2">
-                                <Input isError={true} label="Username" name="username" onChangeHandler={handleInputChange} style_type="auth_style" />
+                                <Input isError={isInputError} label="Username" name="username" onChangeHandler={handleInputChange} style_type="auth_style" />
                             </div>
                             <div className="mb-2">
-                                <Input label="Password" name="password" onChangeHandler={handleInputChange} type="password" style_type="auth_style" />
+                                <Input isError={isInputError} label="Password" name="password" onChangeHandler={handleInputChange} type="password" style_type="auth_style" />
                             </div>
+
+                            {isInputError && <p className="text-xs pb-1 text-red-500">{inputErrorMessage}</p>}
 
                             <p className="underline text-xs mb-4">Forgot password?</p>
 
