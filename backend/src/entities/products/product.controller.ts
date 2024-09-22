@@ -17,6 +17,7 @@ export class ProductController implements IController {
     private initializeActions() {
         this.router.get(`${this.path}/all`, this.GetAllProducts.bind(this))
         this.router.get(`${this.path}/find`, this.SearchProductByName.bind(this))
+        this.router.get(`${this.path}/filter`, this.FilterProduct.bind(this))
         this.router.post(`${this.path}/add`, this.AddProduct)
         this.router.patch(`${this.path}/update/:id`, this.UpdateProduct)
         this.router.delete(`${this.path}/delete/:id`, this.DeleteProduct)
@@ -43,6 +44,7 @@ export class ProductController implements IController {
             .limit(limit)
         let response = GenerateResponse(true, "Product query successful", product_query, total_number_pages)
         res.status(200).json(response)
+        next()
     }
 
     private async SearchProductByName(req: Request, res: Response, next: NextFunction) {
@@ -60,26 +62,53 @@ export class ProductController implements IController {
        
         let response = GenerateResponse(true, "Product query successful", product_query, total_number_pages)
         res.status(200).json(response)
-
-        res.status(200)
+        next();
     }
 
     private async FilterProduct(req: Request, res: Response, next: NextFunction) {
+        let {category, stock_status, max_price, min_price, search} = req.query;
+
+        if(category && !Array.isArray(category)){
+            category = [category as string]
+        }
+
+        if(stock_status && !Array.isArray(stock_status)){
+            stock_status = [stock_status as string]
+        }
 
         let { limit, total_number_pages } = await this.ProductQueryMisc();
         let page = parseInt(req.query.page as string) - 1 || 0;
         let skip = page * limit;
 
-    //     let product_query = await ProductModel
-    //         .find()
-    //         .where("category")
-    //         .in([])
-    //         .where("stock_status")
-    //         .in([])
-    //         .skip(skip)
-    //         .limit(limit);
-    //     let responnse = GenerateResponse(true, "Product query successful", product_query, total_number_pages)
-     }
+        let query:any = {};
+
+
+        if(search){
+            query.product_name = {$regex:search, $options:"i"}
+        }
+
+        if(category){
+            query.category = {$in:category};
+
+        }
+        if(stock_status){
+            query.stock_status = {$in:stock_status}
+        }
+        if(max_price){
+            query.unit_price = {...query.unit_price, $lte:max_price}
+        }
+        if(min_price){
+            query.unit_price = {...query.unit_price, $gte:min_price}
+        }
+
+        let product_query = await ProductModel
+            .find(query)
+            .skip(skip)
+            .limit(limit);
+        let response = GenerateResponse(true, "Product query successful", product_query, total_number_pages)
+        res.status(200).json(response)
+        next();
+    }
 
 
 
