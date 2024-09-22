@@ -1,4 +1,5 @@
 export interface IProps{
     headers:string[],
-    content: any
+    content: any,
+    isLoading:boolean
 }

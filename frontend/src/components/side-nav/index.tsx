@@ -11,15 +11,7 @@ const SideNavItem = ({content, icon, to}:IProps) => {
     let active_style = "text-sm flex mb-2 bg-lime-800 py-2 px-2 rounded items-center gap-2"
   
     
-    return <NavLink to={to as string} className={({isActive})=>{
-        if(isActive == true){   
-            return active_style
-        }else{
-            return default_style
-        }
-       
-
-    }}> {icon} {content}</NavLink>
+    return <NavLink to={to as string} className={default_style}> {icon} {content}</NavLink>
 }
 
 export const SideNav = () => {

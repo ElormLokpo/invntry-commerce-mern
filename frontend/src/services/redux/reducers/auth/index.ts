@@ -1,4 +1,4 @@
-import { IAuthReduxState } from "@/services/api-redux-types/auth"
+import { IAuthReduxState } from "@/services/api-redux-types/auth.types"
 import { createSlice } from "@reduxjs/toolkit"
 
 let initialState: IAuthReduxState = {
