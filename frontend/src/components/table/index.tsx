@@ -1,6 +1,6 @@
 import { IProps } from "./types"
 
-export const Table = ({ headers, content }: IProps) => {
+export const Table = ({ headers, content, isLoading }: IProps) => {
 
 
     return (
@@ -14,7 +14,9 @@ export const Table = ({ headers, content }: IProps) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {content}
+                    {isLoading ? <tr>
+                        <td className="py-3 px-2">Loading...</td>
+                    </tr>:content}
                 </tbody>
             </table>
 

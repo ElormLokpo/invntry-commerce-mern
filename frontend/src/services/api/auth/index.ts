@@ -1,7 +1,7 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react"
 import { baseUrl } from "@/constants"
 import { IResponse } from "@/services/api-redux-types"
-import { IAuthRequest, IAuthResponse, IAuthUserResponse } from "@/services/api-redux-types/auth"
+import { IAuthResponse, IAuthUserResponse, IAuthRequest } from "@/services/api-redux-types/auth.types"
 import { storeCurrentUser } from "@/services/redux/reducers/auth"
 
 

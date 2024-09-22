@@ -1,5 +1,6 @@
 import { Button } from "@/components/button"
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import { IDisplayCategoriesProps } from "./types";
 
 
 const CategoryItem = ({ item }: { item: string }) => {
@@ -35,6 +36,16 @@ export const AddCategories = () => {
                     ["Furniture", "Clothing", "Utensils", "Office", "Kids", "Electronics"].map((item, index) => <CategoryItem key={index} item={item} />)
                 }
             </div>
+        </div>
+    )
+}
+
+export const DisplayCategories = ({categories}:IDisplayCategoriesProps) => {
+    return (
+        <div className="flex gap-2 ">
+            {
+                categories.map((item, index) => <p className="underline" key={index}>{item}</p>)
+            }
         </div>
     )
 }

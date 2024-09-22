@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { BiLeftArrowCircle } from "react-icons/bi";
 import { Input, TextArea } from "@/components/input";
 import { Button } from "@/components/button";
-import { AddCategories } from "../add-category";
+import { AddCategories } from "../category";
 
 
 export const AddProdcut = () => {

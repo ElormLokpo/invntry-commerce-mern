@@ -43,7 +43,7 @@ export class ProductController implements IController {
             .skip(skip)
             .limit(limit)
         let response = GenerateResponse(true, "Product query successful", product_query, total_number_pages)
-        res.status(200).json(response)
+        res.status(200).json(response).end()
         next()
     }
 
