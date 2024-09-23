@@ -29,6 +29,7 @@ export interface IProduct{
     _id?:string,
     product_name:string, 
     quantity_in_stock:number,
+    description?:string,
     quantity_sold?:number,
     currency?:string,
     unit_price:number, 
@@ -46,3 +47,16 @@ export interface IProductReduxState{
         all_products: IProduct[] 
     }
 }
+
+export interface IProductRequestDTO{
+    product_name:string, 
+    description?:string,
+    quantity_in_stock:number,
+    currency?:string,
+    unit_price:number, 
+    category?:string[], 
+    weight?:number, 
+    height?:number,
+    
+}
+

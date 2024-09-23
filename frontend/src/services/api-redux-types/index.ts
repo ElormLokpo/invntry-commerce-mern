@@ -4,3 +4,9 @@ export interface IResponse<T>{
     data: T,
     total_number_pages?:number
 }
+
+
+export interface IResponseDTO{
+    message:string,
+    success:boolean
+}

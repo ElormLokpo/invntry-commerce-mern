@@ -10,11 +10,9 @@ import { DisplayStockStatus } from "../stock";
 export const ProductTable = () => {
     const {data, isLoading} = useGetAllProductsQuery(undefined);
     const [tableData, setTableData] = useState<IProduct[]>([])
- 
+    
     useEffect(()=>{
-        
         if(data && data.success== true){
-            console.log(data.data)
             setTableData(data.data as IProduct[]);
         }
 

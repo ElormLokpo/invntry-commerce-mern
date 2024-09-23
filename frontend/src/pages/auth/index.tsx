@@ -2,7 +2,7 @@ import { Input } from "@/components/input";
 import image from "@/assets/auth.jpg";
 import { Button } from "@/components/button";
 import { useState } from "react";
-import { IAuthRequest } from "@/services/api-redux-types/auth";
+import { IAuthRequest } from "@/services/api-redux-types/auth.types";
 import { useLoginUserMutation } from "@/services/api/auth";
 import { toast, Toaster } from "sonner";
 import { useNavigate } from "react-router-dom";
