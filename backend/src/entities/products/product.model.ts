@@ -10,6 +10,7 @@ const ProductSchema = new Schema({
         type:String, 
         required:true
     },
+    description: String,
     quantity_in_stock:{
         type:Number, 
         required:true
@@ -46,7 +47,8 @@ const ProductSchema = new Schema({
     },
     stock_status:{
         type:String, 
-        enum: Object.values(ProductStockStatus)
+        enum: Object.values(ProductStockStatus),
+        default: Object.values(ProductStockStatus)[1]
     },
     total_orders:{
         type:Number, 

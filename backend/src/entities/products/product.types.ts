@@ -29,6 +29,7 @@ export interface IProduct{
     _id?:string,
     product_name:string, 
     quantity_in_stock:number,
+    description?:string,
     quantity_sold?:number,
     currency?:string,
     unit_price:number, 

@@ -4,7 +4,8 @@ export interface IProps {
     style_type?:string,
     placeholder?:string
     name: string,
-    isError?:boolean
+    isError?:boolean,
+    selectOptionsArr?: any[],
     onChangeHandler: (values:any)=>void
     
 }
