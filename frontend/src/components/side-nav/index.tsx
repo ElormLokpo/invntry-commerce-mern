@@ -29,7 +29,7 @@ export const SideNav = () => {
                     <div>
                         <SideNavItem icon={<MdOutlineSpaceDashboard />} content="Home" to="/admin/dashboard"/>
                         <SideNavItem icon={<MdOutlineProductionQuantityLimits />} content="Products" to="/admin/dashboard/products" />
-                        <SideNavItem icon={<TbDeviceImacDollar />} content="Orders" to="/admin/auth"/>
+                        <SideNavItem icon={<TbDeviceImacDollar />} content="Orders" to="/admin/dashboard/orders"/>
                         <SideNavItem icon={<CiSettings />} content="Settings" to="/admin/auth"/>
 
                     </div>

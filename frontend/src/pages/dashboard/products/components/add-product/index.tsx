@@ -91,7 +91,7 @@ export const AddProdcut = () => {
                     <div className="border rounded p-2 mb-5 shadow-lg">
                         <div className="mb-2 grid grid-cols-2 gap-2">
                             <Input label="Weight (kg)" type="number" name="weight" onChangeHandler={handleInputChange} />
-                            <Input label="Height (kg)" type="number" name="height" onChangeHandler={handleInputChange} />
+                            <Input label="Height (cm)" type="number" name="height" onChangeHandler={handleInputChange} />
 
                         </div>
                     </div>

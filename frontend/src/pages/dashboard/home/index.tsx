@@ -50,8 +50,8 @@ const OrderCard = () => {
 const ProgressBar = ({percentage}:{percentage:number}) => {
     return (
 
-        <div className="w-full bg-gray-200 rounded flex items-center gap-3 h-4">
-            <div className="bg-blue-600 h-4 rounded" style={{ width: `${percentage}%` }}></div>
+        <div className="w-full bg-gray-200 rounded flex items-center gap-3 h-3">
+            <div className="bg-blue-600 h-3 rounded" style={{ width: `${percentage}%` }}></div>
             <p className="text-[0.6rem] text-gray-500">{percentage} %</p>
         </div>
 

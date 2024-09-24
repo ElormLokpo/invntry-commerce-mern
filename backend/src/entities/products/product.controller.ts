@@ -169,7 +169,7 @@ export class ProductController implements IController {
         }else{
             
             let product_mutation = await ProductModel.findByIdAndDelete(id);
-            let response = GenerateResponse(true, "Product updated successfully", product_mutation)
+            let response = GenerateResponse(true, "Product deleted successfully", product_mutation)
             res.status(200).json(response)
             next()
         }
