@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { IProps } from "./types"
+import { IoMdCloseCircleOutline } from "react-icons/io";
+import { ModalContext } from "@/context/modal";
+import { IModal } from "@/context/modal/types";
 
 
-export const Button = ({ content, icon, loading_text, style_type, is_loading,handler }: IProps) => {
+export const Button = ({ content, icon, loading_text, style_type, is_loading, handler }: IProps) => {
     let button_content = is_loading ? loading_text : (<>{icon} {content}</>);
     let auth_style = "bg-gray-800 w-full rounded py-2.5 font-semibold hover:bg-gray-600 text-white text-sm hover:py-1 transition-all"
     let def_style = "flex gap-1  bg-teal-600 items-center justify-center rounded text-xs py-1.5 px-2 text-white hover:py-1 hover:bg-teal-600 transition-all font-semibold"
@@ -33,4 +37,10 @@ export const Button = ({ content, icon, loading_text, style_type, is_loading,han
     }
 
     return <button onClick={handler} className={defualt_btn_style}>{button_content}</button>
+}
+
+export const CloseButton = () => {
+    const { setModalState } = useContext(ModalContext) as IModal
+    const handleClose = () => setModalState(false)
+    return <button className="text-xs underline flex gap-1 items-end" onClick={handleClose}><IoMdCloseCircleOutline /> Close</button>
 }

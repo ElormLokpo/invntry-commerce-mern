@@ -4,6 +4,7 @@ import { DashboardLayout } from "@/layouts/dashboard-layout";
 import { HomePage } from "@/pages/dashboard/home";
 import { ProductPage } from "@/pages/dashboard/products";
 import { AddProdcut } from "@/pages/dashboard/products/components/add-product";
+import { OrderPage } from "@/pages/dashboard/orders";
 
 
 const admin_routes: RouteObject[] = [
@@ -30,6 +31,10 @@ const admin_routes: RouteObject[] = [
         {
             path:"products/add",
             element: <AddProdcut />
+        },
+        {
+            path:"orders",
+            element: <OrderPage />
         }
     ]
    

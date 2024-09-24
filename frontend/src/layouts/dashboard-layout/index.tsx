@@ -8,7 +8,7 @@ import { Toaster } from "sonner";
 import { useSelector } from "react-redux"
 
 export const DashboardLayout = () => {
-    const {modal_state} = useContext(ModalContext) as IModal;
+    const {modal_state, modal_content} = useContext(ModalContext) as IModal;
     const current_user = useSelector((state:any)=>state.auth.value)
     const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ export const DashboardLayout = () => {
         <>
             <Toaster />
             {
-                modal_state && <Modal />
+                modal_state && <Modal content={modal_content}/>
             }
             <div className="h-full grid grid-cols-16">
                 <div className="bg-gray-900 text-white col-span-2">

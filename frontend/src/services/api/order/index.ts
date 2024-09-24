@@ -1,48 +1,48 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import { baseUrl } from "@/constants"
 import { IResponse, IResponseDTO } from "@/services/api-redux-types"
-import { IProduct, IProductRequestDTO } from "@/services/api-redux-types/product.types"
-import { storeAllProducts } from "@/services/redux/reducers/product"
+import { IOrder, IOrderRequestDTO } from "@/services/api-redux-types/order.types"
+import { storeAllOrders } from "@/services/redux/reducers/order"
 
 
 
-export const ProductApi = createApi({
-    reducerPath: "ProductApi",
+export const OrderApi = createApi({
+    reducerPath: "OrderApi",
     baseQuery: fetchBaseQuery({ baseUrl }),
     endpoints: (builder) => ({
-        getAllProducts: builder.query({
+        getAllOrders: builder.query({
             queryFn: async (args, { dispatch }, _extraOptions, baseQuery) => {
                 let response = await baseQuery({
-                    url: "/products/all",
+                    url: "/orders/all",
                     method: "GET",
                 })
 
                 if (response.data) {
-                    const { success, message, data: productData } = response.data as IResponse<IProduct[]>
+                    const { success, message, data: orderData } = response.data as IResponse<IOrder[]>
 
                     if (success == true) {
-                        await dispatch(storeAllProducts(productData))
+                        await dispatch(storeAllOrders(orderData))
                     }
-                    return { data: { success, message, data: productData } }
+                    return { data: { success, message, data: orderData } }
 
                 }
 
                 return { data: { success: false, message: "Something went wrong. Please try again", data: {} } }
             }
         }),
-        addProduct: builder.mutation<IResponseDTO, IProductRequestDTO>({
+        addOrder: builder.mutation<IResponseDTO, IOrderRequestDTO>({
             queryFn: async (args, { dispatch }, _extraOptions, baseQuery) => {
                 let response = await baseQuery({
-                    url: "/products/add",
+                    url: "/orders/add",
                     method: "POST",
                     body: args
                 })
 
                 if (response.data) {
-                    const { success, message } = response.data as IResponse<IProduct>
+                    const { success, message } = response.data as IResponse<IOrder>
 
                     if (success == true) {
-                        await dispatch(ProductApi.endpoints.getAllProducts.initiate(undefined))
+                        await dispatch(OrderApi.endpoints.getAllOrders.initiate(undefined))
                     }
                     return { data: {message, success}}
 
@@ -51,10 +51,10 @@ export const ProductApi = createApi({
                 return { data: {message:"Something went wrong", success:false}}
             }
         }),
-        deleteProduct: builder.mutation<IResponseDTO, string>({
+        deleteOrder: builder.mutation<IResponseDTO, string>({
             queryFn: async (args, { dispatch }, _extraOptions, baseQuery) => {
                 let response = await baseQuery({
-                    url: `/products/delete/${args}`,
+                    url: `/orders/delete/${args}`,
                     method: "DELETE",
                     
                 })
@@ -63,7 +63,7 @@ export const ProductApi = createApi({
                     const { success, message } = response.data as IResponse<any>
 
                     if (success == true) {
-                        await dispatch(ProductApi.endpoints.getAllProducts.initiate(undefined))
+                        await dispatch(OrderApi.endpoints.getAllOrders.initiate(undefined))
                     }
                     return { data: {message, success}}
 
@@ -76,4 +76,4 @@ export const ProductApi = createApi({
 })
 
 
-export const { useGetAllProductsQuery, useAddProductMutation, useDeleteProductMutation } = ProductApi
+export const { useGetAllOrdersQuery, useAddOrderMutation, useDeleteOrderMutation } = OrderApi
