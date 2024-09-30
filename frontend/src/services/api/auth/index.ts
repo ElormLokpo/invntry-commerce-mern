@@ -19,7 +19,7 @@ export const AuthApi = createApi({
                 })
 
                 if (response.data){
-                    const {success,message,data:authData} = response.data as IResponse<IAuthResponse>
+                    let {success,message,data:authData} = response.data as IResponse<IAuthResponse>
 
                     if(success==true){
                        await dispatch(storeCurrentUser(authData))
