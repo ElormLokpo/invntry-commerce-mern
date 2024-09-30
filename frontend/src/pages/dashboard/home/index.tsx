@@ -1,11 +1,13 @@
 import { PiCodesandboxLogoLight } from "react-icons/pi";
+import { ProductTable } from "../products/components/table";
+import { useGetAllProductsQuery } from "@/services/api/product";
 
-const StatCard = () => {
+const StatCard = ({number, title}:{number:string, title:string}) => {
     return (
         <div className="p-4 ">
             <div className="border-r border-gray-200">
-                <p className="text-[0.6rem] mb-1 text-gray-600">Ecommerce Revenue</p>
-                <p className="font-semibold text-xl mb-5">GHS345,459</p>
+                <p className="text-[0.6rem] mb-1 text-gray-600">{title}</p>
+                <p className="font-semibold text-xl mb-5">{number}</p>
             </div>
             <div className="flex text-[0.5rem] items-center gap-2">
                 <div>
@@ -47,29 +49,34 @@ const OrderCard = () => {
     )
 }
 
-const ProgressBar = ({percentage}:{percentage:number}) => {
+const ProgressBar = () => {
+    let rnd = Math.ceil(10 + Math.random() * 75)
+
     return (
 
         <div className="w-full bg-gray-200 rounded flex items-center gap-3 h-3">
-            <div className="bg-blue-600 h-3 rounded" style={{ width: `${percentage}%` }}></div>
-            <p className="text-[0.6rem] text-gray-500">{percentage} %</p>
+            <div className="bg-blue-600 h-3 rounded" style={{ width: `${rnd}%` }}></div>
+            <p className="text-[0.6rem] text-gray-500">{rnd} %</p>
         </div>
 
 
     )
 }
 
-const ProgressComponent = ({percentage}:{percentage:number}) => {
+const ProgressComponent = ({ product_name}:{product_name:string}) => {
     return (
         <div className=" items-center mb-6">
-            <p className="text-[0.7rem]">Product A </p>
-            <ProgressBar  percentage={percentage}/>
+            <p className="text-[0.7rem]">{product_name} </p>
+            <ProgressBar/>
         </div>
 
     )
 }
 
 export const HomePage = () => {
+    const {data} = useGetAllProductsQuery(undefined)
+
+    console.log(data);
     return (
         <div className="h-full p-10">
             <div className="mb-3">
@@ -77,7 +84,17 @@ export const HomePage = () => {
             </div>
 
             <div className="shadow-lg mb-5 shadow-gray-100 grid grid-cols-5">
-                {[1, 1, 1, 1, 1].map((i, index) => <StatCard key={index} />)}
+                {[
+                    {title:"Ecommerce Revenue", number:"GHS 45,550"},
+                    {title:"Monthly Revenue", number:"GHS 7,236"},
+                    {title:"Weekly Revenue", number:"GHS 5,143"},
+                    {title:"Daily Revenue", number:"GHS 345"},
+                    {title:"Total Orders", number:" 10,567"},
+
+
+
+
+                ].map((item, index) => <StatCard number={item.number} title={item.title} key={index} />)}
 
             </div>
 
@@ -86,19 +103,23 @@ export const HomePage = () => {
 
                 <div>
 
-                    {[45,50,23,70, 20].map((i,item)=><ProgressComponent percentage={i} key={item}/>)}
+                    {Array.isArray(data?.data) ? data?.data.map((i,index)=><ProgressComponent key={index} product_name={i.product_name} />) : null}
                    
 
 
                 </div>
             </div>
 
-            <div>
+            <div className="mb-2">
                 <p className="text-gray-500 text-xs font-semibold mb-2">Latest Orders</p>
 
                 <div className="grid grid-cols-5 gap-2">
                     {[1, 1, 1, 1, 1].map((i, index) => <OrderCard key={index} />)}
                 </div>
+            </div>
+
+            <div>
+                <ProductTable />
             </div>
         </div>
     )
