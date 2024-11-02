@@ -7,6 +7,7 @@ import { toast, Toaster } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { authValidationSchema } from "./validation";
 import image from "@/assets/images/bg.jpg"
+import { ThemeSwitcher } from "@/components/theme-switcher";
 
 export const AuthPage = () => {
     const [authData, setAuthData] = useState<IAuthRequest>();
@@ -51,16 +52,20 @@ export const AuthPage = () => {
 
     let image_address = image
     return (
-        <div className="h-full text-center">
+        <div className="h-full text-center dark:bg-black dark:text-white">
             <Toaster />
             <div className="grid grid-cols-3 p-4 h-full">
-                <div className="col-span-2 bg-lime-700 rounded-2xl" style={{backgroundImage: `url(${image})`, backgroundSize:"cover"}}>
+                <div className="col-span-2 bg-lime-700 rounded-2xl" style={{ backgroundImage: `url(${image})`, backgroundSize: "cover" }}>
                     a
                 </div>
 
                 <div className="flex col-span-1 items-center h-full">
                     <div className="p-10 w-full flex justify-center">
                         <div className="w-[19rem] flex items-center flex-col justify-center">
+                            <div className="mb-3">
+                                <ThemeSwitcher />
+                            </div>
+
                             <p className="font-semibold text-xl w-[15rem] mb-2 ">Sign in to <span>Invntry</span></p>
                             <p className="mb-5 text-xs ">Welcome to Invntry, please provide your credentials given to you by the admin.</p>
 
