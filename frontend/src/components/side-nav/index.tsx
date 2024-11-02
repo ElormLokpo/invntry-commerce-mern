@@ -1,5 +1,4 @@
 import { FaOpencart } from "react-icons/fa6";
-import image from "@/assets/side-nav.jpg"
 import { NavLink } from "react-router-dom"
 import { IProps } from "./types";
 import { MdOutlineSpaceDashboard, MdOutlineProductionQuantityLimits } from "react-icons/md";
@@ -16,7 +15,7 @@ const SideNavItem = ({content, icon, to}:IProps) => {
 
 export const SideNav = () => {
     return (
-        <div className="h-full" style={{ backgroundImage: `url(${image})`, backgroundSize: "cover" }}>
+        <div className="h-full" >
             <div className="wrapper-dark-blur flex flex-col justify-between px-2 py-5 h-full">
                 <div>
                     <div className="flex gap-2 items-center mb-10">
