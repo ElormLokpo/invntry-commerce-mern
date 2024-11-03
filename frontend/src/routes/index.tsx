@@ -5,40 +5,44 @@ import { HomePage } from "@/pages/dashboard/home";
 import { ProductPage } from "@/pages/dashboard/products";
 import { AddProdcut } from "@/pages/dashboard/products/components/add-product";
 import { OrderPage } from "@/pages/dashboard/orders";
+import { RootLayout } from "@/layouts";
 
-
-const admin_routes: RouteObject[] = [
-    {
-        path: "/",
-        element: <AuthPage />
-    },
-    {
-    path: "admin/auth",
-    element: <AuthPage />
-    },
-    {
-    path:"admin/dashboard",
-    element:<DashboardLayout />,
-    children:[
+const admin_routes: RouteObject[] = [{
+    path:"",
+    element:<RootLayout />,
+    children: [
         {
-            path:"",
-            element:<HomePage />
+            path: "/",
+            element: <AuthPage />
         },
         {
-            path:"products",
-            element:<ProductPage />
+            path: "admin/auth",
+            element: <AuthPage />
         },
         {
-            path:"products/add",
-            element: <AddProdcut />
-        },
-        {
-            path:"orders",
-            element: <OrderPage />
-        }
-    ]
-   
+            path: "admin/dashboard",
+            element: <DashboardLayout />,
+            children: [
+                {
+                    path: "",
+                    element: <HomePage />
+                },
+                {
+                    path: "products",
+                    element: <ProductPage />
+                },
+                {
+                    path: "products/add",
+                    element: <AddProdcut />
+                },
+                {
+                    path: "orders",
+                    element: <OrderPage />
+                }
+            ]
 
-    }]
+
+        }]
+}]
 
 export const router = createBrowserRouter([...admin_routes])

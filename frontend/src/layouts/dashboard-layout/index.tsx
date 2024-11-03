@@ -4,7 +4,6 @@ import { ModalContext } from "@/context/modal"
 import { IModal } from "@/context/modal/types"
 import { useContext, useEffect } from "react"
 import { Outlet, useNavigate } from "react-router-dom"
-import { Toaster } from "sonner";
 import { useSelector } from "react-redux"
 
 export const DashboardLayout = () => {
@@ -19,7 +18,7 @@ export const DashboardLayout = () => {
     })
     return (
         <>
-            <Toaster />
+            
             {
                 modal_state && <Modal content={modal_content}/>
             }

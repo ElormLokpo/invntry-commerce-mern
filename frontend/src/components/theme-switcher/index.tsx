@@ -3,7 +3,7 @@ import { CiCloudSun } from "react-icons/ci";
 import { useEffect, useState } from "react";
 
 export const ThemeSwitcher = () => {
-    const [theme, setTheme] = useState("light")
+    const [theme, setTheme] = useState("dark")
 
     useEffect(() => {
         if (theme == "dark") {
