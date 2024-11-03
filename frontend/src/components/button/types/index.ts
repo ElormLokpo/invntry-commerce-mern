@@ -6,5 +6,6 @@ export interface IProps {
     is_loading?:boolean,
     loading_text?:string,
     style_type?:string,
-    handler?: ()=>void
+    handler?: ()=>void,
+    isSubmit:boolean
 }
