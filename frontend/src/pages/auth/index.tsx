@@ -80,7 +80,7 @@ export const AuthPage = () => {
 
                                 {isError && <p className="text-xs pb-1 text-red-500">{errorMessage}</p>}
 
-                                <p className="underline font-semibold text-xs mb-4">Forgot password?</p>
+                                <p className="underline font-semibold text-xs mb-4">Forgot password ?</p>
 
                                 <div className="mb-3">
                                     <Button isSubmit={true} content="Log In" style_type="auth" handler={()=>{}} is_loading={isLoading} loading_text="Logging In..." />
