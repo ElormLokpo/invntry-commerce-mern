@@ -2,7 +2,7 @@
 export const HomePage = ()=>{
     return(
         <div>
-            Home page skrr.
+            Home page skrr....s
         </div>
     )
 }
